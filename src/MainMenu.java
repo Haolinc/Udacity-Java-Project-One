@@ -80,6 +80,7 @@ public class MainMenu {
                                     else {
                                         System.out.println("What room number would you like to reserve");
                                         bookingInput = scanner.nextLine();
+                                        hotelResource.updateAvailableRooms(rooms);
                                         IRoom room = hotelResource.getRoom(bookingInput);
                                         if (room == null)
                                             System.out.println("Room not found");

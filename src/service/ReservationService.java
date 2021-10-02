@@ -19,18 +19,24 @@ public class ReservationService {
     //Collection variables
     public Collection<Reservation> reservations = new ArrayList<>();
     public Set<IRoom> rooms = new HashSet<>();
+    public Collection<IRoom> availableRooms;
 
     //Implementing methods
     public void addRoom(IRoom room) {
         rooms.add(room);
     }
     public IRoom getARoom(String roomId) {
-        for (IRoom r: rooms){
+        for (IRoom r: availableRooms){
             if (r.getRoomNumber().equals(roomId))
                 return r;
         }
         return null;
     }
+    public void updateAvailableRooms(Collection<IRoom> newAvailableRooms) {
+        availableRooms = new ArrayList<>(newAvailableRooms);
+    }
+
+
     public Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
         Reservation reservation = new Reservation(customer, room, checkInDate, checkOutDate);
         reservations.add(reservation);
